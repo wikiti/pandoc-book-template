@@ -4,7 +4,7 @@ METADATA = metadata.yml
 CHAPTERS = chapters/*.md
 TOC = --toc --toc-depth=2
 IMAGES_FOLDER = images
-COVER_IMAGE = $(COVER_IMAGE)/cover.png
+COVER_IMAGE = $(IMAGES_FOLDER)/cover.png
 LATEX_CLASS = report
 MATH_FORMULAS = --webtex
 CSS_FILE = style.css
