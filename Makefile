@@ -26,14 +26,14 @@ pdf: $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf
 
 $(BUILD)/epub/$(OUTPUT_FILENAME).epub: $(METADATA) $(CHAPTERS)
 	mkdir -p $(BUILD)/epub
-	pandoc $(ARGS) -S --epub-metadata=$(METADATA) --epub-cover-image=$(COVER_IMAGE) -o $@ $^
+	pandoc $(ARGS) -S --epub-metadata=$(METADATA) --epub-cover-image=$(COVER_IMAGE) -o $@ $(sort $^)
 
 $(BUILD)/html/$(OUTPUT_FILENAME).html: $(CHAPTERS)
 	mkdir -p $(BUILD)/html
-	pandoc $(ARGS) --standalone --to=html5 -o $@ $^
+	pandoc $(ARGS) --standalone --to=html5 -o $@ $(sort $^)
 	cp -R $(IMAGES_FOLDER)/ $(BUILD)/html/$(IMAGES_FOLDER)/
 	cp $(CSS_FILE) $(BUILD)/html/$(CSS_FILE)
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf: $(METADATA) $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
-	pandoc $(ARGS) -V documentclass=$(LATEX_CLASS) -o $@ $^
+	pandoc $(ARGS) -V documentclass=$(LATEX_CLASS) -o $@ $(sort $^)
