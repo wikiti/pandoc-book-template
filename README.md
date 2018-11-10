@@ -20,6 +20,13 @@ This template uses [make](https://www.gnu.org/software/make/) to build the outpu
 sudo apt-get install make
 ```
 
+To export to PDF files, make sure to install the following packages:
+
+```sh
+sudo apt-get install texlive-latex-base texlive-latex-recommended \
+  texlive-latex-extra texlive-fonts-recommended
+```
+
 ### Folder structure
 
 Here's a folder structure for a Pandoc book:
@@ -220,7 +227,7 @@ The generated file will be placed in *build/pdf*.
 Please, note that PDF file generation requires some extra dependencies (~ 800 MB):
 
 ```sh
-sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-latex-extra 
+sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-latex-extra
 ```
 
 #### Export to EPUB
