@@ -1,7 +1,7 @@
 # Pandoc book template
 
 [![CircleCI](https://circleci.com/gh/wikiti/pandoc-book-template.svg?style=shield)](https://circleci.com/gh/wikiti/pandoc-book-template)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nitayneeman/made-with-love/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wikiti/pandoc-book-template/blob/master/LICENSE.md)
 
 ## Description
 
