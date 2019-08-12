@@ -52,7 +52,7 @@ Edit the *metadata.yml* file to set configuration data:
 ---
 title: My book title
 author: Daniel Herzog
-rights:  Creative Commons Attribution 4.0 International
+rights:  MIT License
 language: en-US
 tags: [book, my-book, etc]
 abstract: |
