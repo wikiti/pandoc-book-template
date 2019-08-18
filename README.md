@@ -93,6 +93,21 @@ This is the second subsection.
 
 Each title (*#*) will represent a chapter, while each subtitle (*##*) will represent a chapter's section. You can use as many levels of sections as markdown supports.
 
+#### For manual control over page ordering
+
+You may prefer to have manual control over page ordering instead of using numeric prefixes.
+
+To do so, replace `CHAPTERS = chapters/*.md` in the Makefile with:
+
+```
+CHAPTERS += $(addprefix ./chapters/,\
+ 01-introduction.md\
+ 02-installation.md\
+ 03-usage.md\
+ 04-references.md\
+)
+```
+
 #### Links between chapters
 
 Anchor links can be used to link chapters within the book:
