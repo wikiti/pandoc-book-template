@@ -93,11 +93,11 @@ This is the second subsection.
 
 Each title (*#*) will represent a chapter, while each subtitle (*##*) will represent a chapter's section. You can use as many levels of sections as markdown supports.
 
-#### For manual control over page ordering
+#### Manual control over page ordering
 
 You may prefer to have manual control over page ordering instead of using numeric prefixes.
 
-To do so, replace `CHAPTERS = chapters/*.md` in the Makefile with:
+To do so, replace `CHAPTERS = chapters/*.md` in the Makefile with your own order. For example:
 
 ```
 CHAPTERS += $(addprefix ./chapters/,\
