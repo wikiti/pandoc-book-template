@@ -16,7 +16,7 @@ CSS_FILE = style.css
 CSS_ARG = --css=$(CSS_FILE)
 METADATA_ARG = --metadata-file=$(METADATA)
 ARGS = $(TOC) $(MATH_FORMULAS) $(CSS_ARG) $(METADATA_ARG)
-PDF_ARGS = -V geometry:margin=1in -V documentclass=report
+PDF_ARGS = -V geometry:margin=1in -V documentclass=report --pdf-engine=xelatex
 
 ####################################################################################################
 # Basic actions

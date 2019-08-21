@@ -6,4 +6,5 @@ language: en-US
 tags: [book, my-book, etc]
 abstract: |
   Your summary.
+mainfont: DejaVu Sans
 ---

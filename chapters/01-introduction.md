@@ -35,3 +35,15 @@ Formula example: $\mu = \sum_{i=0}^{N} \frac{x_i}{N}$
 Now, full size:
 
 $$\mu = \sum_{i=0}^{N} \frac{x_i}{N}$$
+
+And a code sample:
+
+```rb
+def hello_world
+  puts "hello world!"
+end
+
+hello_world
+```
+
+Check these unicode characters: ǽß¢ð€đŋμ

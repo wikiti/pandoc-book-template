@@ -5,19 +5,22 @@
 
 ## Description
 
-This repository contains a simple template for building [Pandoc](http://pandoc.org/) documents; Pandoc is a suite of tools to compile markdown files into readable files (PDF, EPUB, HTML...).
+This repository contains a simple template for building [Pandoc](http://pandoc.org/) documents;
+Pandoc is a suite of tools to compile markdown files into readable files (PDF, EPUB, HTML...).
 
 ## Usage
 
 ### Installing
 
-Please, check [this page](http://pandoc.org/installing.html) for more information. On ubuntu, it can be installed as the *pandoc* package:
+Please, check [this page](http://pandoc.org/installing.html) for more information. On ubuntu, it
+can be installed as the *pandoc* package:
 
 ```sh
 sudo apt-get install pandoc
 ```
 
-This template uses [make](https://www.gnu.org/software/make/) to build the output files, so don't forget to install it too:
+This template uses [make](https://www.gnu.org/software/make/) to build the output files, so don't
+forget to install it too:
 
 ```sh
 sudo apt-get install make
@@ -26,8 +29,7 @@ sudo apt-get install make
 To export to PDF files, make sure to install the following packages:
 
 ```sh
-sudo apt-get install texlive-latex-base texlive-latex-recommended \
-  texlive-latex-extra texlive-fonts-recommended
+sudo apt-get install texlive-fonts-recommended texlive-xetex
 ```
 
 ### Folder structure
@@ -46,7 +48,7 @@ my-book/         # Root directory.
 
 ### Setup generic data
 
-Edit the *metadata.yml* file to set configuration data:
+Edit the *metadata.yml* file to set configuration data (note that it must start and end with `---`):
 
 ```yml
 ---
@@ -57,14 +59,17 @@ language: en-US
 tags: [book, my-book, etc]
 abstract: |
   Your summary text.
+mainfont: DejaVu Sans
 ---
 ```
 
-You can find the list of all available keys on [this page](http://pandoc.org/MANUAL.html#extension-yaml_metadata_block).
+You can find the list of all available keys on
+[this page](http://pandoc.org/MANUAL.html#extension-yaml_metadata_block).
 
 ### Creating chapters
 
-Creating a new chapter is as simple as creating a new markdown file in the *chapters/* folder; you'll end up with something like this:
+Creating a new chapter is as simple as creating a new markdown file in the *chapters/* folder;
+you'll end up with something like this:
 
 ```
 chapters/01-introduction.md
@@ -73,7 +78,8 @@ chapters/03-usage.md
 chapters/04-references.md
 ```
 
-Pandoc and Make will join them automatically ordered by name; that's why the numeric prefixes are being used.
+Pandoc and Make will join them automatically ordered by name; that's why the numeric prefixes are
+being used.
 
 All you need to specify for each chapter at least one title:
 
@@ -91,7 +97,8 @@ This is the first subsection.
 This is the second subsection.
 ```
 
-Each title (*#*) will represent a chapter, while each subtitle (*##*) will represent a chapter's section. You can use as many levels of sections as markdown supports.
+Each title (*#*) will represent a chapter, while each subtitle (*##*) will represent a chapter's
+section. You can use as many levels of sections as markdown supports.
 
 #### Manual control over page ordering
 
@@ -130,7 +137,8 @@ If you want to rename the reference, use this syntax:
 For more information, check [this](#usage) chapter.
 ```
 
-Anchor names should be downcased, and spaces, colons, semicolons... should be replaced with hyphens. Instead of `Chapter title: A new era`, you have: `#chapter-title-a-new-era`.
+Anchor names should be downcased, and spaces, colons, semicolons... should be replaced with hyphens.
+Instead of `Chapter title: A new era`, you have: `#chapter-title-a-new-era`.
 
 #### Links between sections
 
@@ -230,7 +238,8 @@ $$\mu = \sum_{i=0}^{N} \frac{x_i}{N}$$
 
 ### Output
 
-This template uses *Makefile* to automatize the building process. Instead of using the *pandoc cli util*, we're going to use some *make* commands.
+This template uses *Makefile* to automatize the building process. Instead of using the *pandoc cli
+util*, we're going to use some *make* commands.
 
 #### Export to PDF
 
@@ -270,7 +279,9 @@ The generated file(s) will be placed in *build/html*.
 
 #### Extra configuration
 
-If you want to configure the output, you'll probably have to look the [Pandoc Manual](http://pandoc.org/MANUAL.html) for further information about pdf (LaTeX) generation, custom styles, etc.
+If you want to configure the output, you'll probably have to look the
+[Pandoc Manual](http://pandoc.org/MANUAL.html) for further information about pdf (LaTeX) generation,
+custom styles, etc.
 
 ## References
 
