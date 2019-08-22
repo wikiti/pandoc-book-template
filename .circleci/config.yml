@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Setup dependencies
           command:
-            apk add make
+            apk add make texlive-xetex ttf-dejavu
 
       - run:
           name: Build all formats
