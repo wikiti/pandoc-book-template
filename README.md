@@ -254,7 +254,7 @@ The generated file will be placed in *build/pdf*.
 Please, note that PDF file generation requires some extra dependencies (~ 800 MB):
 
 ```sh
-sudo apt-get install texlive-xetex
+sudo apt-get install texlive-xetex ttf-dejavu
 ```
 
 #### Export to EPUB
