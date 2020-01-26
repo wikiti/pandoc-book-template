@@ -174,20 +174,13 @@ Use Markdown syntax to insert an image with a caption:
 ![A cool seagull.](images/seagull.png)
 ```
 
-Pandoc will automatically convert the image into a figure (image + caption).
+Pandoc will automatically convert the image into a figure, using the title (the text between the
+brackets) as a caption.
 
-If you want to resize the image, you may use this syntax, available in Pandoc 1.16:
+If you want to resize the image, you may use this syntax, available since Pandoc 1.16:
 
 ```md
 ![A cool seagull.](images/seagull.png){ width=50% height=50% }
-```
-
-Also, to reference an image, use LaTeX labels:
-
-```md
-Please, admire the gloriousnes of Figure \ref{seagull_image}.
-
-![A cool seagull.\label{seagull_image}](images/seagull.png)
 ```
 
 #### Insert a table
@@ -202,20 +195,6 @@ Use markdown table, and use the `Table: <Your table description>` syntax to add 
 | ...   | ...  |
 
 Table: This is an example table.
-```
-
-If you want to reference a table, use LaTeX labels:
-
-```md
-Please, check Table /ref{example_table}.
-
-| Index | Name |
-| ----- | ---- |
-| 0     | AAA  |
-| 1     | BBB  |
-| ...   | ...  |
-
-Table: This is an example table.\label{example_table}
 ```
 
 #### Insert an equation
@@ -235,6 +214,62 @@ $$\mu = \sum_{i=0}^{N} \frac{x_i}{N}$$
 ```
 
 [Here](https://www.codecogs.com/latex/eqneditor.php)'s an online equation editor.
+
+#### Cross references
+
+Originally, this template used LaTeX labels for auto numbering on images, tables, equations or
+sections, like this:
+
+```md
+Please, admire the gloriousnes of Figure \ref{seagull_image}.
+
+![A cool seagull.\label{seagull_image}](images/seagull.png)
+```
+
+**However, these references only works when exporting to a LaTeX-based format (i.e. PDF, LaTeX).**
+
+In case you need cross references support on other formats, this template now support cross
+references using [Pandoc filters](https://pandoc.org/filters.html). If you want to use them, use a
+valid plugin and with its own syntax.
+
+Using [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref) is highly recommended, but
+there are other alternatives which use a similar syntax, like
+[pandoc-xnos](https://github.com/tomduck/pandoc-xnos).
+
+First, enable the filter on the *Makefile* by updating the `FILTER_ARGS` variable with your new
+filter(s):
+
+```make
+FILTER_ARGS = --filter pandoc-crossref
+```
+
+Then, you may use the filter cross references. For example, *pandoc-crossref*  uses
+`{#<type>:<id>}` for definitions and `@<type>:id` for referencing. Some examples:
+
+```md
+List of references:
+
+- Check @fig:seagull.
+- Check @tbl:table.
+- Check @eq:equation.
+
+List of elements to reference:
+
+![A cool seagull](images/seagull.png){#fig:seagull}
+
+$$ y = mx + b $$ {#eq:equation}
+
+| Index | Name |
+| ----- | ---- |
+| 0     | AAA  |
+| 1     | BBB  |
+| ...   | ...  |
+
+Table: This is an example table. {#tbl:table}
+```
+
+Check the desired filter settings and usage for more information
+([pandoc-crossref usage](http://lierdakil.github.io/pandoc-crossref/)).
 
 ### Output
 
@@ -281,7 +316,7 @@ The generated file(s) will be placed in *build/html*.
 
 If you want to configure the output, you'll probably have to look the
 [Pandoc Manual](http://pandoc.org/MANUAL.html) for further information about pdf (LaTeX) generation,
-custom styles, etc.
+custom styles, etc, and modify the Makefile file accordingly.
 
 ## References
 
