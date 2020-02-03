@@ -18,8 +18,16 @@ MATH_FORMULAS = --webtex
 CSS_FILE = style.css
 CSS_ARGS = --css=$(CSS_FILE)
 
-# FILTER_ARGS = --filter pandoc-crossref
+# Debugging
+
 # DEBUG_ARGS = --verbose
+
+# Pandoc filtes - uncomment the following variable to enable cross references filter. For more
+# information, check the "Cross references" section on the README.md file.
+
+# FILTER_ARGS = --filter pandoc-crossref
+
+# Combined arguments
 
 ARGS = $(TOC) $(MATH_FORMULAS) $(CSS_ARGS) $(METADATA_ARGS) $(FILTER_ARGS) $(DEBUG_ARGS)
 PANDOC_COMMAND = pandoc

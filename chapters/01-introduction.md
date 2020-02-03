@@ -17,9 +17,9 @@ A bigger seagull:
 This is the second subsection.
 
 
-Please, check [First] subsection.
+Please, check [First: Images] subsection.
 
-Please, check [this](#first) subsection.
+Please, check [this](#first-images) subsection.
 
 | Index | Name |
 | ----- | ---- |
