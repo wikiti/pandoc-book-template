@@ -2,23 +2,24 @@
 
 This is the first paragraph of the introduction chapter.
 
-## First
+## First: Images
 
-This is the first subsection. Please, admire the gloriousnes of Figure \ref{seagull_image}.
+This is the first subsection. Please, admire the gloriousnes of this seagull:
 
+![A cool seagull.](images/seagull.png)
 
-![A cool seagull.\label{seagull_image}](images/seagull.png)
+A bigger seagull:
 
-## Second
+![A cool big seagull.](images/seagull.png){ width=320px }
+
+## Second: Tables
 
 This is the second subsection.
 
 
-Please, check [First] subsection.
+Please, check [First: Images] subsection.
 
-Please, check [this](#first) subsection.
-
-Please, check Table \ref{example_table}.
+Please, check [this](#first-images) subsection.
 
 | Index | Name |
 | ----- | ---- |
@@ -26,9 +27,9 @@ Please, check Table \ref{example_table}.
 | 1     | BBB  |
 | ...   | ...  |
 
-Table: This is an example table.\label{example_table}
+Table: This is an example table.
 
-## Third
+## Third: Equations
 
 Formula example: $\mu = \sum_{i=0}^{N} \frac{x_i}{N}$
 
@@ -47,3 +48,27 @@ hello_world
 ```
 
 Check these unicode characters: ǽß¢ð€đŋμ
+
+## Fourth: Cross references
+
+These cross references are disabled by default. To enable them, check the
+_[Cross references](https://github.com/wikiti/pandoc-book-template#cross-references)_
+section on the README.md file.
+
+Here's a list of cross references:
+
+- Check @fig:seagull.
+- Check @tbl:table.
+- Check @eq:equation.
+
+![A cool seagull](images/seagull.png){#fig:seagull}
+
+$$ y = mx + b $$ {#eq:equation}
+
+| Index | Name |
+| ----- | ---- |
+| 0     | AAA  |
+| 1     | BBB  |
+| ...   | ...  |
+
+Table: This is an example table. {#tbl:table}
