@@ -34,3 +34,8 @@ jobs:
           name: Check if pdf exists
           command:
             test -s build/pdf/book.pdf
+
+      - run:
+          name: Check if docx exists
+          command:
+            test -s build/docx/book.docx
