@@ -37,6 +37,7 @@ PANDOC_COMMAND = pandoc
 EPUB_ARGS = --epub-cover-image=$(COVER_IMAGE)
 HTML_ARGS = --standalone --to=html5
 PDF_ARGS = -V geometry:margin=1in -V documentclass=report --pdf-engine=xelatex
+DOCX_ARGS =
 
 ####################################################################################################
 # Basic actions
@@ -44,7 +45,7 @@ PDF_ARGS = -V geometry:margin=1in -V documentclass=report --pdf-engine=xelatex
 
 all:	book
 
-book:	epub html pdf
+book:	epub html pdf docx
 
 clean:
 	rm -r $(BUILD)
@@ -58,6 +59,8 @@ epub:	$(BUILD)/epub/$(OUTPUT_FILENAME).epub
 html:	$(BUILD)/html/$(OUTPUT_FILENAME).html
 
 pdf:	$(BUILD)/pdf/$(OUTPUT_FILENAME).pdf
+
+docx:	$(BUILD)/docx/$(OUTPUT_FILENAME).docx
 
 $(BUILD)/epub/$(OUTPUT_FILENAME).epub:	$(MAKEFILE) $(METADATA) $(CHAPTERS) $(CSS_FILE) $(IMAGES) \
 		$(COVER_IMAGE)
@@ -75,4 +78,9 @@ $(BUILD)/html/$(OUTPUT_FILENAME).html:	$(MAKEFILE) $(METADATA) $(CHAPTERS) $(CSS
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:	$(MAKEFILE) $(METADATA) $(CHAPTERS) $(CSS_FILE) $(IMAGES)
 	mkdir -p $(BUILD)/pdf
 	$(PANDOC_COMMAND) $(ARGS) $(PDF_ARGS) -o $@ $(CHAPTERS)
+	@echo "$@ was built"
+
+$(BUILD)/docx/$(OUTPUT_FILENAME).docx:	$(MAKEFILE) $(METADATA) $(CHAPTERS) $(CSS_FILE) $(IMAGES)
+	mkdir -p $(BUILD)/docx
+	$(PANDOC_COMMAND) $(ARGS) $(DOCX_ARGS) -o $@ $(CHAPTERS)
 	@echo "$@ was built"

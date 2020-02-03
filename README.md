@@ -278,19 +278,19 @@ util*, we're going to use some *make* commands.
 
 #### Export to PDF
 
-Use this command:
+Please note that PDF file generation requires some extra dependencies (~ 800 MB):
+
+```sh
+sudo apt-get install texlive-xetex ttf-dejavu
+```
+
+After installing the dependencies, use this command:
 
 ```sh
 make pdf
 ```
 
 The generated file will be placed in *build/pdf*.
-
-Please, note that PDF file generation requires some extra dependencies (~ 800 MB):
-
-```sh
-sudo apt-get install texlive-xetex ttf-dejavu
-```
 
 #### Export to EPUB
 
@@ -311,6 +311,16 @@ make html
 ```
 
 The generated file(s) will be placed in *build/html*.
+
+#### Export to DOCX
+
+Use this command:
+
+```sh
+make docx
+```
+
+The generated file(s) will be placed in *build/docx*.
 
 #### Extra configuration
 
