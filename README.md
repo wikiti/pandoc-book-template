@@ -54,12 +54,16 @@ Edit the *metadata.yml* file to set configuration data (note that it must start 
 ---
 title: My book title
 author: Daniel Herzog
-rights:  MIT License
-language: en-US
-tags: [book, my-book, etc]
+rights: MIT License
+lang: en-US
+tags: [pandoc, book, my-book, etc]
 abstract: |
-  Your summary text.
+  Your summary.
 mainfont: DejaVu Sans
+
+# Filter preferences:
+# - pandoc-crossref
+linkReferences: true
 ---
 ```
 
