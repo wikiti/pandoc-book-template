@@ -1,2 +1,5 @@
 build/
 *.log
+
+.idea/
+stale_outputs_checked
