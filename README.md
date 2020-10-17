@@ -275,6 +275,25 @@ Table: This is an example table. {#tbl:table}
 Check the desired filter settings and usage for more information
 ([pandoc-crossref usage](http://lierdakil.github.io/pandoc-crossref/)).
 
+#### Content filters
+
+If you need to modify the MD content before passing it to pandoc, you may use `CONTENT_FILTERS`. By
+setting this makefile variable, it will be passed to the markdown content before passing it to
+pandoc. For example, to replace all occurrences of `@pagebreak` with
+`<div style="page-break-before: always;"></div>` you may use a `sed` filter:
+
+```
+CONTENT_FILTERS = sed 's/@pagebreak/"<div style=\"page-break-before: always;\"><\/div>"/g'
+```
+
+To use multiple filters, you may include multiple pipes on the `CONTENT_FILTERS` variable:
+
+```
+CONTENT_FILTERS = \
+  sed 's/@pagebreak/"<div style=\"page-break-before: always;\"><\/div>"/g' | \
+  sed 's/@image/[Cool image](\/images\/image.png)/g'
+```
+
 ### Output
 
 This template uses *Makefile* to automatize the building process. Instead of using the *pandoc cli
@@ -331,6 +350,13 @@ The generated file(s) will be placed in *build/docx*.
 If you want to configure the output, you'll probably have to look the
 [Pandoc Manual](http://pandoc.org/MANUAL.html) for further information about pdf (LaTeX) generation,
 custom styles, etc, and modify the Makefile file accordingly.
+
+#### Templates
+
+Output files are generated using [pandoc templates](https://pandoc.org/MANUAL.html#templates). All
+templates are located under the `templates/` folder, and may be modified as you will. Some basic
+format templates are already included on this repository, ion case you need something to start
+with.
 
 ## References
 
