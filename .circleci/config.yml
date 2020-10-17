@@ -26,7 +26,6 @@ jobs:
           name: Check if html exists
           command:
             test -s build/html/book.html &&
-            test -s build/html/style.css &&
             test -s build/html/images/cover.png &&
             test -s build/html/images/seagull.png
 
