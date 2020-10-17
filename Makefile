@@ -16,8 +16,9 @@ TEMPLATES = $(shell find templates/ -type f)
 COVER_IMAGE = images/cover.png
 MATH_FORMULAS = --webtex
 
-# TODO: ??
-CSS_ARGS = --css $(CSS_FILE)
+# Chapters content
+CONTENT = awk 'FNR==1 && NR!=1 {print "\n\n"}{print}' $(CHAPTERS)
+CONTENT_FILTERS = tee # Use this to add sed filters or other piped commands
 
 # Debugging
 
@@ -74,21 +75,21 @@ docx:	$(BUILD)/docx/$(OUTPUT_FILENAME).docx
 
 $(BUILD)/epub/$(OUTPUT_FILENAME).epub:	$(EPUB_DEPENDENCIES)
 	mkdir -p $(BUILD)/epub
-	$(PANDOC_COMMAND) $(ARGS) $(EPUB_ARGS) -o $@ $(CHAPTERS)
+	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(EPUB_ARGS) -o $@
 	@echo "$@ was built"
 
 $(BUILD)/html/$(OUTPUT_FILENAME).html:	$(HTML_DEPENDENCIES)
 	mkdir -p $(BUILD)/html
-	$(PANDOC_COMMAND) $(ARGS) $(HTML_ARGS) -o $@ $(CHAPTERS)
+	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(HTML_ARGS) -o $@
 	cp --parent $(IMAGES) $(BUILD)/html/
 	@echo "$@ was built"
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:	$(PDF_DEPENDENCIES)
 	mkdir -p $(BUILD)/pdf
-	$(PANDOC_COMMAND) $(ARGS) $(PDF_ARGS) -o $@ $(CHAPTERS)
+	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(PDF_ARGS) -o $@
 	@echo "$@ was built"
 
 $(BUILD)/docx/$(OUTPUT_FILENAME).docx:	$(DOCX_DEPENDENCIES)
 	mkdir -p $(BUILD)/docx
-	$(PANDOC_COMMAND) $(ARGS) $(DOCX_ARGS) -o $@ $(CHAPTERS)
+	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(DOCX_ARGS) -o $@
 	@echo "$@ was built"
