@@ -54,10 +54,13 @@ PDF_DEPENDENCIES = $(BASE_DEPENDENCIES)
 # Basic actions
 ####################################################################################################
 
+.PHONY: all
 all:	book
 
+.PHONY: book
 book:	epub html pdf docx
 
+.PHONY: clean
 clean:
 	rm -r $(BUILD)
 
@@ -65,12 +68,16 @@ clean:
 # File builders
 ####################################################################################################
 
+.PHONY: epub
 epub:	$(BUILD)/epub/$(OUTPUT_FILENAME).epub
 
+.PHONY: html
 html:	$(BUILD)/html/$(OUTPUT_FILENAME).html
 
+.PHONY: pdf
 pdf:	$(BUILD)/pdf/$(OUTPUT_FILENAME).pdf
 
+.PHONY: docx
 docx:	$(BUILD)/docx/$(OUTPUT_FILENAME).docx
 
 $(BUILD)/epub/$(OUTPUT_FILENAME).epub:	$(EPUB_DEPENDENCIES)
