@@ -88,7 +88,7 @@ $(BUILD)/epub/$(OUTPUT_FILENAME).epub:	$(EPUB_DEPENDENCIES)
 $(BUILD)/html/$(OUTPUT_FILENAME).html:	$(HTML_DEPENDENCIES)
 	mkdir -p $(BUILD)/html
 	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(HTML_ARGS) -o $@
-	cp --parent $(IMAGES) $(BUILD)/html/
+	cp -P $(IMAGES) $(BUILD)/html/
 	@echo "$@ was built"
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:	$(PDF_DEPENDENCIES)
