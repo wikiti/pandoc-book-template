@@ -50,53 +50,69 @@ EPUB_DEPENDENCIES = $(BASE_DEPENDENCIES)
 HTML_DEPENDENCIES = $(BASE_DEPENDENCIES)
 PDF_DEPENDENCIES = $(BASE_DEPENDENCIES)
 
+# Detected Operating System
+
+OS = $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+
+# OS specific commands
+
+ifeq ($(detected_OS),Darwin) # Mac OS X
+	COPY_CMD = cp -P
+else # Linux
+	COPY_CMD = cp --parent
+endif
+
+MKDIR_CMD = mkdir -p
+RMDIR_CMD = rm -r
+ECHO_BUILDING = @echo "building $@..."
+ECHO_BUILT = @echo "$@ was built\n"
+
 ####################################################################################################
 # Basic actions
 ####################################################################################################
 
-.PHONY: all
+.PHONY: all book clean epub html pdf docx
+
 all:	book
 
-.PHONY: book
 book:	epub html pdf docx
 
-.PHONY: clean
 clean:
-	rm -r $(BUILD)
+	$(RMDIR_CMD) $(BUILD)
 
 ####################################################################################################
 # File builders
 ####################################################################################################
 
-.PHONY: epub
 epub:	$(BUILD)/epub/$(OUTPUT_FILENAME).epub
 
-.PHONY: html
 html:	$(BUILD)/html/$(OUTPUT_FILENAME).html
 
-.PHONY: pdf
 pdf:	$(BUILD)/pdf/$(OUTPUT_FILENAME).pdf
 
-.PHONY: docx
 docx:	$(BUILD)/docx/$(OUTPUT_FILENAME).docx
 
 $(BUILD)/epub/$(OUTPUT_FILENAME).epub:	$(EPUB_DEPENDENCIES)
-	mkdir -p $(BUILD)/epub
+	$(ECHO_BUILDING)
+	$(MKDIR_CMD) $(BUILD)/epub
 	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(EPUB_ARGS) -o $@
-	@echo "$@ was built"
+	$(ECHO_BUILT)
 
 $(BUILD)/html/$(OUTPUT_FILENAME).html:	$(HTML_DEPENDENCIES)
-	mkdir -p $(BUILD)/html
+	$(ECHO_BUILDING)
+	$(MKDIR_CMD) $(BUILD)/html
 	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(HTML_ARGS) -o $@
-	cp --parent $(IMAGES) $(BUILD)/html/
-	@echo "$@ was built"
+	$(COPY_CMD) $(IMAGES) $(BUILD)/html/
+	$(ECHO_BUILT)
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:	$(PDF_DEPENDENCIES)
-	mkdir -p $(BUILD)/pdf
+	$(ECHO_BUILDING)
+	$(MKDIR_CMD) $(BUILD)/pdf
 	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(PDF_ARGS) -o $@
-	@echo "$@ was built"
+	$(ECHO_BUILT)
 
 $(BUILD)/docx/$(OUTPUT_FILENAME).docx:	$(DOCX_DEPENDENCIES)
-	mkdir -p $(BUILD)/docx
+	$(ECHO_BUILDING)
+	$(MKDIR_CMD) $(BUILD)/docx
 	$(CONTENT) | $(CONTENT_FILTERS) | $(PANDOC_COMMAND) $(ARGS) $(DOCX_ARGS) -o $@
-	@echo "$@ was built"
+	$(ECHO_BUILT)
