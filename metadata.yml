@@ -3,12 +3,14 @@ title: My book title
 author: Daniel Herzog
 rights: MIT License
 lang: en-US
+mainlang: english
+otherlang: english
 tags: [pandoc, book, my-book, etc]
 abstract: |
   Your summary.
 mainfont: DejaVu Sans
-
 # Filter preferences:
 # - pandoc-crossref
 linkReferences: true
 ---
+
