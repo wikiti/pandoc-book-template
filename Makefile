@@ -52,11 +52,11 @@ PDF_DEPENDENCIES = $(BASE_DEPENDENCIES)
 
 # Detected Operating System
 
-OS = $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+OS = $(shell sh -c 'uname -s 2>/dev/null || echo Unknown')
 
 # OS specific commands
 
-ifeq ($(detected_OS),Darwin) # Mac OS X
+ifeq ($(OS),Darwin) # Mac OS X
 	COPY_CMD = cp -P
 else # Linux
 	COPY_CMD = cp --parent
